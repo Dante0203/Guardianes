@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diario de los Guardianes</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+        overflow-x: hidden;
+        animation: fadeIn 1.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    h1 {
+        color: #444;
+        margin-bottom: 5px;
+    }
+
+    p {
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 14px;
+    }
+
+    .container {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card {
+        background: white;
+        padding: 15px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        width: 170px;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card img {
+    width: 100%;
+    border-radius: 15px;
+    object-fit: contain;
+}
+
+    h3 {
+        margin: 10px 0 5px 0;
+        color: #555;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 20px;
+        background: #dbeafe;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 13px;
+    }
+
+    button:hover {
+        background: #bfdbfe;
+    }
+
+    .message {
+        margin-top: 35px;
+        max-width: 320px;
+        min-height: 60px;
+        color: #444;
+        font-style: italic;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.5s ease;
+    }
+
+    .message.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* 🦋 Mariposa */
+    .butterfly {
+        position: fixed;
+        bottom: 15px;
+        right: 18px;
+        font-size: 18px;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    @keyframes flashAppear {
+        0% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: 0.8; transform: scale(1.3); }
+        100% { opacity: 0.6; transform: scale(1); }
+    }
+
+</style>
+</head>
+<body>
+
+<h1>Los Guardianes 🐾</h1>
+<p>Toby y Emi siempre observan más de lo que parece...</p>
+
+<div class="container">
+
+    <div class="card">
+        <img src="img/toby.jpeg" alt="Toby">
+        <h3>Toby</h3>
+        <button onclick="mensajeToby()">Ver lo que piensa</button>
+    </div>
+
+    <div class="card">
+        <img src="img/emi.jpeg" alt="Emi">
+        <h3>Emi</h3>
+        <button onclick="mensajeEmi()">Ver lo que piensa</button>
+    </div>
+
+</div>
+
+<div id="mensaje" class="message"></div>
+
+<div class="butterfly" onclick="faseSecreta()">🦋</div>
+
+<script>
+
+function mostrarMensaje(texto) {
+    const mensaje = document.getElementById("mensaje");
+    mensaje.innerText = texto;
+    mensaje.classList.add("show");
+}
+
+function mensajeToby() {
+    mostrarMensaje("He notado que me engorde... Ya no puedo volar 🐾");
+}
+
+function mensajeEmi() {
+    mostrarMensaje("Yo solo se que tengo hambre. 🖤");
+}
+
+function faseSecreta() {
+    mostrarMensaje("Fase 1 iniciada.");
+}
+
+window.addEventListener("load", function() {
+    const butterfly = document.querySelector(".butterfly");
+
+    setTimeout(() => {
+        butterfly.style.animation = "flashAppear 0.7s ease forwards";
+    }, 1000);
+});
+
+</script>
+
+</body>
+</html>
